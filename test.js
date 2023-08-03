@@ -58,19 +58,19 @@ const provider = new ethers.JsonRpcProvider("https://goerli.infura.io/v3/8e9f38b
 
 const test = async () => {
   const contract = new ethers.Contract(ADDR, ABI, provider);
-  console.log('contract success', contract)
+  // console.log('contract success', contract)
   const balanceObj = TOKENS.map((token) => contract.getBalances(ADDRESS, [token]));
   const balances = await Promise.all(balanceObj);
   const formatBalance = balances.map((balance, index) => ({
     token: TOKENS[index],
     balance: ethers.formatEther(balance[0])
   }));
-  console.log('balance success', balances)
+  // console.log('balance success', balances)
   return formatBalance;
 };
 
 test().then((res) => {
-	console.log("result",res)
+	console.log(res)
 }).catch(err => {
 	console.log('failed:', err)
 });
